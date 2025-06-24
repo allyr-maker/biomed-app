@@ -1,0 +1,26 @@
+# Python virtual environments
+venv/
+env/
+new_env/
+
+# Model files and large data
+*.tar.gz
+*.h5
+*.pt
+*.pkl
+*.dll
+*.lib
+
+# Compiled files
+__pycache__/
+*.py[cod]
+!biomed-clean/
+!biomed-clean/*.py
+
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode or PyCharm settings
+.vscode/
+.idea/

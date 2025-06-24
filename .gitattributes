@@ -1,2 +1,0 @@
-en_core_sci_md-0.5.4.tar.gz filter=lfs diff=lfs merge=lfs -text
-*.tar.gz filter=lfs diff=lfs merge=lfs -text
