@@ -5,20 +5,20 @@ def install_model_if_needed():
     import subprocess
     import importlib.util
 
-    if importlib.util.find_spec("en_core_sci_md") is None:
+    if importlib.util.find_spec("en_ner_bionlp13cg_md") is None:
         subprocess.run([
            "pip",
             "install",
              "https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz"
         ], check=True)
     else:
-       print("en_core_sci_md is already installed.")
+       print("en_ner_bionlp13cg_md is already installed.")
 
 install_model_if_needed()
 
 # Now load the model
 import spacy
-nlp = spacy.load("en_core_sci_md")
+nlp = spacy.load("en_ner_bionlp13cg_md")
 
 
 
