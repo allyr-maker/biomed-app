@@ -2,15 +2,15 @@ import subprocess
 import importlib.util
 
 def install_model_if_needed():
-    model_name = "en_core_sci_md"
-    if importlib.util.find_spec(model_name) is None:
-        print(f"{model_name} not found, installing...")
+    import subprocess
+    import importlib.util
+
+    if importlib.util.find_spec("en_core_sci_md") is None:
         subprocess.run([
-            "pip", "install",
-            "https://www.dropbox.com/scl/fo/hpvr9ko86pklswv7g33wi/ALLYSUgSzrVeO8K-4HbtWjE?rlkey=grf0qju29lfy3liww2igbkugu&st=f5774han&dl=0"
+           pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz
         ], check=True)
     else:
-        print(f"{model_name} is already installed.")
+       print("en_core_sci_md is already installed.")
 
 install_model_if_needed()
 
