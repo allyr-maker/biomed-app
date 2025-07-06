@@ -61,5 +61,7 @@ for node in G.nodes():
     net.add_node(node)
 for u, v, d in G.edges(data=True):
     net.add_edge(u, v, value=d["weight"])
+# Ensure the directory for the HTML file exists
+os.makedirs(this_dir, exist_ok=True)
 
 net.show(os.path.join(this_dir, "entity_graph.html"))
