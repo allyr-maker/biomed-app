@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 from itertools import combinations
 from pyvis.network import Network
 
-if not os.path.exists("biomed-app/biomed-clean/output.txt"):
-    raise FileNotFoundError("biomed-app/biomed-clean/output.txt not found! Please generate it first.")# ✅ Step 0: Resolve path to output.txt relative to this script
+if not os.path.exists("output.txt"):
+    raise FileNotFoundError("output.txt not found! Please generate it first.")# ✅ Step 0: Resolve path to output.txt relative to this script
 this_dir = os.path.dirname(os.path.abspath(__file__))
-output_path = os.path.join(this_dir, "biomed-app/biomed-clean/output.txt")
+output_path = os.path.join(this_dir, "output.txt")
 
 # Step 1: Read the saved output file
-with open("biomed-app/biomed-clean/output.txt", "r", encoding="utf-8") as f:
+with open("output.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # Step 2: Extract entity lines per chunk
