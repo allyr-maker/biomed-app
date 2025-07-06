@@ -10,7 +10,7 @@ this_dir = os.path.dirname(os.path.abspath(__file__))
 output_path = os.path.join(this_dir, "output.txt")
 
 # Step 1: Read the saved output file
-with open(output_path, "r", encoding="utf-8") as f:
+with open("biomed-clean/output.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # Step 2: Extract entity lines per chunk
