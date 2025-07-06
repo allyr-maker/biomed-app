@@ -1,48 +1,53 @@
 import subprocess
 import importlib.util
+import sys
+import os
+import streamlit as st
+import streamlit.components.v1 as components
 
+# 1. Ensure the model is installed
 def install_model_if_needed():
-    import subprocess
-    import importlib.util
-
     if importlib.util.find_spec("en_ner_bionlp13cg_md") is None:
         subprocess.run([
-           "pip",
+            "pip",
             "install",
-             "https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz"
+            "https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz"
         ], check=True)
     else:
-       print("en_ner_bionlp13cg_md is already installed.")
+        print("en_ner_bionlp13cg_md is already installed.")
 
 install_model_if_needed()
 
-# Now load the model
+# 2. Load the model
 import spacy
 nlp = spacy.load("en_ner_bionlp13cg_md")
 
-
-
-import sys
-import os
-
-# Add parent directory to Python path
+# 3. Setup sys.path and import build_graph
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from build_graph import build_entity_graph
-with open("biomed-clean/entity_graph.html", "r", encoding="utf-8") as f:
-    html_code = f.read()
-st.components.v1.html(html_code, height=800, scrolling=True)
 
-import streamlit as st
-
+# 4. Set Streamlit page config and UI
 st.set_page_config(page_title="BioMed Paper Analyzer", layout="wide")
-
 st.title("🔬 Biomedical Paper Analyzer")
 st.write("Upload a research paper and see gene/disease/pathway highlights.")
 
 uploaded_file = st.file_uploader("Choose a research paper (.txt)")
 
+# 5. Only build and load the graph if the file exists or was uploaded
 if uploaded_file is not None:
     text = uploaded_file.read().decode("utf-8", errors="ignore")
     st.subheader("📄 Extracted Text")
-    st.text(text[:1000])  # Show first 1000 characters for preview
+    st.text(text[:1000])  # Show preview
+
+    # You probably want to run your full pipeline here (summarize, extract entities, etc.)
+    # Then build the graph from that output:
+    build_entity_graph()
+
+    # Load and display the generated graph
+    html_path = os.path.join("biomed-clean", "entity_graph.html")
+    if os.path.exists(html_path):
+        with open(html_path, "r", encoding="utf-8") as f:
+            html_code = f.read()
+        components.html(html_code, height=800, scrolling=True)
+    else:
+        st.error("⚠️ entity_graph.html not found after building the graph.")
