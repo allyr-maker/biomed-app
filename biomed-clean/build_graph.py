@@ -4,6 +4,35 @@ import matplotlib.pyplot as plt
 from itertools import combinations
 from pyvis.network import Network
 
+
+# build_graph.py
+
+def build_entity_graph():
+    from pyvis.network import Network
+    import networkx as nx
+    import os
+    import re
+
+    G = nx.Graph()
+
+    # Example logic to build the graph — update as needed
+    with open("output.txt", "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        entities = re.findall(r"\[(.*?)\]", line)
+        for i in range(len(entities)):
+            for j in range(i + 1, len(entities)):
+                u, v = entities[i], entities[j]
+                if G.has_edge(u, v):
+                    G[u][v]["weight"] += 1
+                else:
+                    G.add_edge(u, v, weight=1)
+
+    net = Network(height="750px", width="100%", notebook=False)
+    net.from_nx(G)
+    net.show("entity_graph.html")
+
 if not os.path.exists("output.txt"):
     raise FileNotFoundError("output.txt not found! Please generate it first.")# ✅ Step 0: Resolve path to output.txt relative to this script
 this_dir = os.path.dirname(os.path.abspath(__file__))
