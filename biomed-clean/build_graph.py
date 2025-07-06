@@ -64,4 +64,4 @@ for u, v, d in G.edges(data=True):
 # Ensure the directory for the HTML file exists
 os.makedirs(this_dir, exist_ok=True)
 
-net.show(os.path.join(this_dir, "entity_graph.html"))
+net.show("entity_graph.html")
