@@ -94,3 +94,32 @@ for u, v, d in G.edges(data=True):
 os.makedirs(this_dir, exist_ok=True)
 
 net.show("entity_graph.html")
+
+
+def build_entity_graph():
+    from pyvis.network import Network
+    import networkx as nx
+    import os
+    import re
+
+    G = nx.Graph()
+
+    # Simple logic to extract entity pairs from output.txt
+    with open("biomed-app/biomed-clean/output.txt", "r", encoding="utf-8") as f:
+        lines = f.readlines()
+
+    for line in lines:
+        entities = re.findall(r"\[(.*?)\]", line)
+        for i in range(len(entities)):
+            for j in range(i + 1, len(entities)):
+                u, v = entities[i], entities[j]
+                if G.has_edge(u, v):
+                    G[u][v]["weight"] += 1
+                else:
+                    G.add_edge(u, v, weight=1)
+
+    net = Network(height="750px", width="100%", notebook=False)
+    net.from_nx(G)
+
+    out_path = os.path.join(os.path.dirname(__file__), "entity_graph.html")
+    net.show(out_path)
