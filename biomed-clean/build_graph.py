@@ -1,9 +1,15 @@
+import os
 import networkx as nx
 import matplotlib.pyplot as plt
 from itertools import combinations
+from pyvis.network import Network
+
+# ✅ Step 0: Resolve path to output.txt relative to this script
+this_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(this_dir, "output.txt")
 
 # Step 1: Read the saved output file
-with open("output.txt", "r", encoding="utf-8") as f:
+with open(output_path, "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 # Step 2: Extract entity lines per chunk
@@ -44,19 +50,15 @@ nx.draw_networkx_labels(G, pos, font_size=9)
 plt.title("Biomedical Entity Co-occurrence Graph")
 plt.axis("off")
 plt.tight_layout()
+# ✅ Save plot to absolute path
+plt.savefig(os.path.join(this_dir, "entity_graph.png"), dpi=300)
 plt.show()
-plt.savefig("entity_graph.png", dpi=300)
 
-# interactive visualization
-from pyvis.network import Network
-import os
-
+# Step 5: Interactive visualization
 net = Network(notebook=False)
 for node in G.nodes():
     net.add_node(node)
 for u, v, d in G.edges(data=True):
     net.add_edge(u, v, value=d["weight"])
 
-net.show("entity_graph.html")
-# Optional: open the file manually if net.show doesn't launch browser
-# os.system("start entity_graph.html")
+net.show(os.path.join(this_dir, "entity_graph.html"))
