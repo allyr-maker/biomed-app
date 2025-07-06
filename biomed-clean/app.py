@@ -41,6 +41,8 @@ if uploaded_file is not None:
 
     # You probably want to run your full pipeline here (summarize, extract entities, etc.)
     # Then build the graph from that output:
+    with open("output.txt", "w", encoding="utf-8") as f:
+    f.write(text)
     build_entity_graph()
 
     # Load and display the generated graph
