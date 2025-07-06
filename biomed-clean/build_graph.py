@@ -93,7 +93,8 @@ for u, v, d in G.edges(data=True):
 # Ensure the directory for the HTML file exists
 os.makedirs(this_dir, exist_ok=True)
 
-net.show("entity_graph.html")
+html_path = os.path.join(this_dir, "entity_graph.html")
+net.write_html(html_path)
 
 
 def build_entity_graph():
