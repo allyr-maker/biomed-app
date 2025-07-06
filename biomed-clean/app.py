@@ -36,20 +36,21 @@ uploaded_file = st.file_uploader("Choose a research paper (.txt)")
 # 5. Only build and load the graph if the file exists or was uploaded
 if uploaded_file is not None:
     text = uploaded_file.read().decode("utf-8", errors="ignore")
-    st.subheader("📄 Extracted Text")
-    st.text(text[:1000])  # Show preview
+
 
     # You probably want to run your full pipeline here (summarize, extract entities, etc.)
     # Then build the graph from that output:
     with open("output.txt", "w", encoding="utf-8") as f:
         f.write(text)
+    st.subheader("📄 Extracted Text")
+    st.text(text[:1000])  # Show preview
     build_entity_graph()
 
     # Load and display the generated graph
-    html_path = os.path.join("biomed-clean", "entity_graph.html")
-    if os.path.exists(html_path):
-        with open(html_path, "r", encoding="utf-8") as f:
-            html_code = f.read()
-        components.html(html_code, height=800, scrolling=True)
-    else:
-        st.error("⚠️ entity_graph.html not found after building the graph.")
+html_path = os.path.join("biomed-clean", "entity_graph.html")
+if os.path.exists(html_path):
+    with open(html_path, "r", encoding="utf-8") as f:
+        html_code = f.read()
+    components.html(html_code, height=800, scrolling=True)
+else:
+    st.error("⚠️ entity_graph.html not found after building the graph.")
