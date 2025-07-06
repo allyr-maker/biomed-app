@@ -4,7 +4,8 @@ import matplotlib.pyplot as plt
 from itertools import combinations
 from pyvis.network import Network
 
-# ✅ Step 0: Resolve path to output.txt relative to this script
+if not os.path.exists("output.txt"):
+    raise FileNotFoundError("output.txt not found! Please generate it first.")# ✅ Step 0: Resolve path to output.txt relative to this script
 this_dir = os.path.dirname(os.path.abspath(__file__))
 output_path = os.path.join(this_dir, "output.txt")
 
