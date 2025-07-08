@@ -1,4 +1,6 @@
 import os
+os.environ["STREAMLIT_WATCHER_DISABLE_AUTO_RELOAD"] = "true"
+
 import sys
 import subprocess
 import importlib.util
