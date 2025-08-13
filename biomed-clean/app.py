@@ -1,31 +1,55 @@
 import os
 import sys
-import subprocess
-import importlib.util
 import streamlit as st
 import streamlit.components.v1 as components
+import spacy
 
-# ---- Disable Streamlit auto-reload (helps with repeated model installs) ----
+# ---- Disable Streamlit auto-reload (optional) ----
 os.environ["STREAMLIT_WATCHER_DISABLE_AUTO_RELOAD"] = "true"
 
-# ---- Step 1: Ensure SciSpacy + small model is installed ----
-def install_model_if_needed():
-    # Install scispacy if missing
-    if importlib.util.find_spec("scispacy") is None:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "scispacy==0.5.4"])
+# ---- Load small SciSpacy model ----
+try:
+    nlp = spacy.load("en_core_sci_sm")
+except OSError:
+    st.error(
+        "SciSpacy small model 'en_core_sci_sm' not found. "
+        "Make sure you installed dependencies from requirements.txt."
+    )
+    st.stop()
 
-    # Install spaCy if missing
-    if importlib.util.find_spec("spacy") is None:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "spacy==3.7.5"])
+# ---- Adjust Python path for graph code ----
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from build_graph import build_entity_graph
 
-    # Install small SciSpacy model if missing
+# ---- Streamlit UI ----
+st.set_page_config(page_title="BioMed Paper Analyzer", layout="wide")
+st.title("🔬 Biomedical Paper Analyzer")
+st.write("Upload a research paper and visualize gene/disease/pathway links.")
+
+uploaded_file = st.file_uploader("Choose a research paper (.txt)")
+
+if uploaded_file is not None:
+    text = uploaded_file.read().decode("utf-8", errors="ignore")
+
+    output_path = os.path.join("biomed-clean", "output.txt")
+    os.makedirs("biomed-clean", exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+    st.subheader("📄 Extracted Text Preview")
+    st.text(text[:1000])
+
+    # ---- Build graph ----
     try:
-        import en_core_sci_sm
-    except ImportError:
-        subprocess.check_call([
-            sys.executable,
-            "-m",
-            "pip",
-            "install",
-            "https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz"
-], check=True)
+        build_entity_graph()
+    except Exception as e:
+        st.error(f"❌ Failed to build graph: {e}")
+
+    # ---- Display graph ----
+    html_path = os.path.join("biomed-clean", "entity_graph.html")
+    if os.path.exists(html_path):
+        with open(html_path, "r", encoding="utf-8") as f:
+            html_code = f.read()
+        components.html(html_code, height=800, scrolling=True)
+    else:
+        st.warning("⚠️ entity_graph.html not found.")
