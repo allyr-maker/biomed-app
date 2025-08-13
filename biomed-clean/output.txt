@@ -1,0 +1,59 @@
+1. Hepatology. 2023 Mar 1;77(3):888-901. doi: 10.1002/hep.32569. Epub 2023 Feb 17.
+
+Lipocalin-2 activates hepatic stellate cells and promotes nonalcoholic 
+steatohepatitis in high-fat diet-fed Ob/Ob mice.
+
+Kim KE(1), Lee J(1), Shin HJ(1), Jeong EA(1), Jang HM(1), Ahn YJ(1), An HS(1), 
+Lee JY(1), Shin MC(2), Kim SK(3), Yoo WG(4), Kim WH(5), Roh GS(1).
+
+Author information:
+(1)Department of Anatomy and Convergence Medical Science , College of Medicine , 
+Institute of Health Sciences , Gyeongsang National University , Jinju , Republic 
+of Korea.
+(2)College of Pharmacy , Research Institute of Pharmaceutical Sciences , 
+Gyeongsang National University , Jinju , Republic of Korea.
+(3)Department of Internal Medicine , College of Medicine , Institute of Health 
+Sciences , Gyeongsang National University , Jinju , Republic of Korea.
+(4)Department of Parasitology and Tropical Medicine , College of Medicine , 
+Institute of Health Sciences , Gyeongsang National University , Jinju , Republic 
+of Korea.
+(5)Division of Cardiovascular Diseases , Center for Biomedical Sciences , Korea 
+National Institute of Health , Cheongju , Republic of Korea.
+
+Erratum in
+    Hepatology. 2025 May 1;81(5):E151. doi: 10.1097/HEP.0000000000001287.
+
+BACKGROUND AND AIMS: In obesity and type 2 diabetes mellitus, leptin promotes 
+insulin resistance and contributes to the progression of NASH via activation of 
+hepatic stellate cells (HSCs). However, the pathogenic mechanisms that trigger 
+HSC activation in leptin-deficient obesity are still unknown. This study aimed 
+to determine how HSC-targeting lipocalin-2 (LCN2) mediates the transition from 
+simple steatosis to NASH.
+APPROACH AND RESULTS: Male wild-type (WT) and ob/ob mice were fed a high-fat 
+diet (HFD) for 20 weeks to establish an animal model of NASH with fibrosis. 
+Ob/ob mice were subject to caloric restriction or recombinant leptin treatment. 
+Double knockout (DKO) mice lacking both leptin and lcn2 were also fed an HFD for 
+20 weeks. In addition, HFD-fed ob/ob mice were treated with gadolinium 
+trichloride to deplete Kupffer cells. The LX-2 human HSCs and primary HSCs from 
+ob/ob mice were used to investigate the effects of LCN2 on HSC activation. Serum 
+and hepatic LCN2 expression levels were prominently increased in HFD-fed ob/ob 
+mice compared with normal diet-fed ob/ob mice or HFD-fed WT mice, and these 
+changes were closely linked to liver fibrosis and increased hepatic α-SMA/matrix 
+metalloproteinase 9 (MMP9)/signal transducer and activator of transcription 3 
+(STAT3) protein levels. HFD-fed DKO mice showed a marked reduction of α-SMA 
+protein compared with HFD-fed ob/ob mice. In particular, the colocalization of 
+LCN2 and α-SMA was increased in HSCs from HFD-fed ob/ob mice. In primary HSCs 
+from ob/ob mice, exogenous LCN2 treatment induced HSC activation and MMP9 
+secretion. By contrast, LCN2 receptor 24p3R deficiency or a STAT3 inhibitor 
+reduced the activation and migration of primary HSCs.
+CONCLUSIONS: LCN2 acts as a key mediator of HSC activation in leptin-deficient 
+obesity via α-SMA/MMP9/STAT3 signaling, thereby exacerbating NASH.
+
+Copyright © 2023 The Author(s). Published by Wolters Kluwer Health, Inc. on 
+behalf of American Association for the Study of Liver Diseases.
+
+DOI: 10.1002/hep.32569
+PMCID: PMC9936980
+PMID: 35560370 [Indexed for MEDLINE]
+
+Conflict of interest statement: Nothing to report.
