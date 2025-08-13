@@ -27,4 +27,5 @@ def install_model_if_needed():
             "-m",
             "pip",
             "install",
-            "https://s3-us-west-2.ama
+            "https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.5.4/en_ner_bionlp13cg_md-0.5.4.tar.gz"
+], check=True)
